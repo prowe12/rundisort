@@ -1,0 +1,665 @@
+(base) Pennys-Mac-Pro:installation prowe$ make
+f2py -c -m disort_driver_py disort_driver_py.f disort_py.f errpack.f linpak.f rdi1mach.f bdref.f --fcompiler=gnu95
+running build
+running config_cc
+unifing config_cc, config, build_clib, build_ext, build commands --compiler options
+running config_fc
+unifing config_fc, config, build_clib, build_ext, build commands --fcompiler options
+running build_src
+build_src
+building extension "disort_driver_py" sources
+f2py options: []
+f2py:> /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_pymodule.c
+creating /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8
+Reading fortran codes...
+	Reading file 'disort_driver_py.f' (format:fix,strict)
+{'before': '', 'this': 'intent', 'after': '(in)  :: nlyr, dtauc, ssalb, nmom,'}
+Line #76 in disort_driver_py.f:"      intent(in)  :: NLYR, DTAUC, SSALB, NMOM,"
+	analyzeline: no name pattern found in intent statement for ''. Skipping.
+{'before': '', 'this': 'intent', 'after': '(in)  :: ncldlyr,cldlyr, pmom_cld,'}
+Line #77 in disort_driver_py.f:"      intent(in)  :: NCLDLYR,CLDLYR, PMOM_CLD,"
+	analyzeline: no name pattern found in intent statement for ''. Skipping.
+{'before': '', 'this': 'intent', 'after': '(in)  :: temper,wvnmlo,wvnmhi, usrtau, ntau, utau, nstr,'}
+Line #78 in disort_driver_py.f:"      intent(in)  :: TEMPER,WVNMLO,WVNMHI, USRTAU, NTAU, UTAU, NSTR,"
+	analyzeline: no name pattern found in intent statement for ''. Skipping.
+{'before': '', 'this': 'intent', 'after': '(in)  :: usrang,numu,umu, nphi, phi, ibcnd, fbeam,'}
+Line #79 in disort_driver_py.f:"      intent(in)  :: USRANG,NUMU,UMU, NPHI, PHI, IBCND, FBEAM,"
+	analyzeline: no name pattern found in intent statement for ''. Skipping.
+{'before': '', 'this': 'intent', 'after': '(in)  :: umu0, phi0,fisot, lamber, albedo, btemp,'}
+Line #80 in disort_driver_py.f:"      intent(in)  :: UMU0, PHI0,FISOT, LAMBER, ALBEDO, BTEMP,"
+	analyzeline: no name pattern found in intent statement for ''. Skipping.
+{'before': '', 'this': 'intent', 'after': '(in)  :: ttemp, temis,plank, onlyfl,header,'}
+Line #81 in disort_driver_py.f:"      intent(in)  :: TTEMP, TEMIS,PLANK, ONLYFL,HEADER,"
+	analyzeline: no name pattern found in intent statement for ''. Skipping.
+	Reading file 'disort_py.f' (format:fix,strict)
+Line #375 in disort_py.f:"      PARAMETER ( MXCLY = 120, MXULV = 5, MXCMU = 48, MXUMU = 10,          MXPHI = 3, MI = MXCMU / 2, MI9M2 = 9*MI - 2,          NNLYRI = MXCMU*MXCLY, MXSQT = 1000 )"
+	determineexprtype: could not determine expressions ('9*mi - 2') type.
+Line #5533 in disort_py.f:"      PARAMETER ( A1 = 1. / 3., A2 = -1. / 8., A3 = 1. / 60.,          A4 = -1. / 5040., A5 = 1. / 272160.,          A6 = -1. / 13305600. )"
+	determineexprtype: could not determine expressions ('1. / 3.') type.
+Line #5533 in disort_py.f:"      PARAMETER ( A1 = 1. / 3., A2 = -1. / 8., A3 = 1. / 60.,          A4 = -1. / 5040., A5 = 1. / 272160.,          A6 = -1. / 13305600. )"
+	determineexprtype: could not determine expressions ('-1. / 8.') type.
+Line #5533 in disort_py.f:"      PARAMETER ( A1 = 1. / 3., A2 = -1. / 8., A3 = 1. / 60.,          A4 = -1. / 5040., A5 = 1. / 272160.,          A6 = -1. / 13305600. )"
+	determineexprtype: could not determine expressions ('1. / 60.') type.
+Line #5533 in disort_py.f:"      PARAMETER ( A1 = 1. / 3., A2 = -1. / 8., A3 = 1. / 60.,          A4 = -1. / 5040., A5 = 1. / 272160.,          A6 = -1. / 13305600. )"
+	determineexprtype: could not determine expressions ('-1. / 5040.') type.
+Line #5533 in disort_py.f:"      PARAMETER ( A1 = 1. / 3., A2 = -1. / 8., A3 = 1. / 60.,          A4 = -1. / 5040., A5 = 1. / 272160.,          A6 = -1. / 13305600. )"
+	determineexprtype: could not determine expressions ('1. / 272160.') type.
+Line #5533 in disort_py.f:"      PARAMETER ( A1 = 1. / 3., A2 = -1. / 8., A3 = 1. / 60.,          A4 = -1. / 5040., A5 = 1. / 272160.,          A6 = -1. / 13305600. )"
+	determineexprtype: could not determine expressions ('-1. / 13305600.') type.
+Line #7192 in disort_py.f:"      PARAMETER ( DPR = 180.0 / 3.14159265 )"
+	determineexprtype: could not determine expressions ('180.0 / 3.14159265') type.
+	Reading file 'errpack.f' (format:fix,strict)
+	Reading file 'linpak.f' (format:fix,strict)
+	Reading file 'rdi1mach.f' (format:fix,strict)
+	Reading file 'bdref.f' (format:fix,strict)
+Post-processing...
+	Block: disort_driver_py
+			Block: disort_driver
+			Block: disort
+			Block: asymtx
+			Block: cmpint
+			Block: fluxes
+			Block: intcor
+			Block: secsca
+{}
+In: :disort_driver_py:disort_py.f:setdis
+vars2fortran: No typespec for argument "err_flag".
+			Block: setdis
+			Block: setmtx
+			Block: sinsca
+			Block: soleig
+			Block: solve0
+			Block: surfac
+			Block: terpev
+			Block: terpso
+			Block: upbeam
+			Block: upisot
+			Block: usrint
+			Block: xifunc
+			Block: chekin
+			Block: dref
+			Block: lepoly
+			Block: plkavg
+			Block: pravin
+			Block: prtinp
+			Block: prtint
+			Block: qgausn
+			Block: ratio
+			Block: slftst
+			Block: zeroal
+			Block: zeroit
+			Block: albtrn
+			Block: altrin
+			Block: praltr
+			Block: solve1
+			Block: spaltr
+			Block: errmsg
+			Block: wrtbad
+			Block: wrtdim
+			Block: tstbad
+			Block: sgbco
+			Block: sgbfa
+			Block: sgbsl
+			Block: sgeco
+			Block: sgefa
+			Block: sgesl
+			Block: sasum
+			Block: saxpy
+			Block: sdot
+			Block: sscal
+			Block: sswap
+			Block: isamax
+			Block: r1mach
+			Block: d1mach
+			Block: i1mach
+			Block: bdref
+Post-processing (stage 2)...
+Building modules...
+	Building module "disort_driver_py"...
+		Constructing wrapper function "disort_driver"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  rfldir,rfldn,flup,dfdt,uavg,uu,albmed,trnmed,msg,errflag = disort_driver(nlyr,dtauc,ssalb,nmom,ncldlyr,cldlyr,pmom_cld,temper,wvnmlo,wvnmhi,usrtau,ntau,utau,nstr,usrang,numu,umu,nphi,phi,ibcnd,fbeam,umu0,phi0,fisot,lamber,albedo,btemp,ttemp,temis,plank,onlyfl,header,[maxcly,maxulv,maxumu,maxphi,maxmom])
+		Constructing wrapper function "disort"...
+		  disort(nlyr,dtauc,ssalb,nmom,pmom,temper,wvnmlo,wvnmhi,usrtau,ntau,utau,nstr,usrang,numu,umu,nphi,phi,ibcnd,fbeam,umu0,phi0,fisot,lamber,albedo,btemp,ttemp,temis,plank,onlyfl,accur,prnt,header,rfldir,rfldn,flup,dfdt,uavg,uu,albmed,trnmed,msg,errflag,[maxcly,maxulv,maxumu,maxphi,maxmom])
+		Constructing wrapper function "asymtx"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  asymtx(aa,evec,eval,ier,wkd,aad,evecd,evald,[m,ia,ievec])
+		Constructing wrapper function "cmpint"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  cmpint(fbeam,gc,kk,layru,ll,lyrcut,mazim,ncut,nn,nstr,plank,ntau,taucpr,umu0,utaupr,zz,zplk0,zplk1,uum,[mxcmu,mxulv,mxumu])
+		Constructing wrapper function "fluxes"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  fluxes(cmu,cwt,fbeam,gc,kk,layru,ll,lyrcut,ncut,nn,nstr,ntau,pi,prnt,prntu0,ssalb,taucpr,umu0,utau,utaupr,xr0,xr1,zz,zplk0,zplk1,dfdt,flup,fldn,fldir,rfldir,rfldn,uavg,u0c,[maxulv,mxcmu,mxulv])
+		Constructing wrapper function "intcor"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  intcor(dither,fbeam,flyr,layru,lyrcut,nmom,ncut,nphi,nstr,ntau,numu,oprim,phasa,phast,phasm,phirad,pi,rpd,pmom,ssalb,dtauc,tauc,taucpr,umu,umu0,utau,utaupr,uu,[maxmom,maxulv,maxumu])
+		Creating wrapper for Fortran function "secsca"("secsca")...
+		Constructing wrapper function "secsca"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  secsca = secsca(ctheta,flyr,layru,nmom,nstr,pmom,ssalb,dtauc,tauc,umu,umu0,utau,fbeam,pi,[maxmom])
+		Constructing wrapper function "setdis"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  setdis(cmu,cwt,deltam,dtauc,dtaucp,expbea,fbeam,flyr,gl,ibcnd,layru,lyrcut,ncut,nlyr,ntau,nn,nstr,plank,numu,onlyfl,corint,oprim,pmom,ssalb,tauc,taucpr,utau,utaupr,umu,umu0,usrtau,usrang,msg,err_flag,[maxmom,maxumu,mxcmu])
+		Constructing wrapper function "setmtx"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  setmtx(bdr,cband,cmu,cwt,delm0,dtaucp,gc,kk,lamber,lyrcut,ncol,ncut,nn,nstr,taucpr,wk,[mi,mi9m2,mxcmu,nnlyri])
+		Creating wrapper for Fortran function "sinsca"("sinsca")...
+		Constructing wrapper function "sinsca"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sinsca = sinsca(dither,layru,nlyr,phase,omega,tau,umu,umu0,utau,fbeam,pi)
+		Constructing wrapper function "soleig"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  soleig(amb,apb,array,cmu,cwt,gl,mazim,nn,nstr,ylmc,cc,evecc,eval,kk,gc,aad,eveccd,evald,wkd,[mi,mxcmu])
+		Constructing wrapper function "solve0"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  solve0(b,bdr,bem,bplank,cband,cmu,cwt,expbea,fbeam,fisot,ipvt,lamber,ll,lyrcut,mazim,ncol,ncut,nn,nstr,pi,tplank,taucpr,umu0,z,zz,zplk0,zplk1,[mi,mi9m2,mxcmu,nnlyri])
+		Constructing wrapper function "surfac"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  surfac(albedo,delm0,cmu,fbeam,lamber,mazim,nn,numu,onlyfl,pi,umu,umu0,usrang,wvnmlo,wvnmhi,bdr,emu,bem,rmu,[mi,mxumu])
+		Constructing wrapper function "terpev"...
+		  terpev(cwt,evecc,gl,gu,mazim,nn,nstr,numu,wk,ylmc,ylmu,[mxcmu,mxumu])
+		Constructing wrapper function "terpso"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  terpso(cwt,delm0,fbeam,gl,mazim,plank,numu,nstr,oprim,pi,ylm0,ylmc,ylmu,psi0,psi1,xr0,xr1,z0,z1,zj,zbeam,z0u,z1u,[mxcmu])
+		Constructing wrapper function "upbeam"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  upbeam(array,cc,cmu,delm0,fbeam,gl,ipvt,mazim,nn,nstr,pi,umu0,wk,ylm0,ylmc,zj,zz,msg,[mxcmu])
+		Constructing wrapper function "upisot"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  upisot(array,cc,cmu,ipvt,nn,nstr,oprim,wk,xr0,xr1,z0,z1,zplk0,zplk1,[mxcmu])
+		Constructing wrapper function "usrint"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  usrint(bplank,cmu,cwt,delm0,dtaucp,emu,expbea,fbeam,fisot,gc,gu,kk,lamber,layru,ll,lyrcut,mazim,ncut,nlyr,nn,nstr,plank,numu,ntau,pi,rmu,taucpr,tplank,umu,umu0,utaupr,wk,zbeam,z0u,z1u,zz,zplk0,zplk1,uum,[mxcmu,mxulv,mxumu])
+		Creating wrapper for Fortran function "xifunc"("xifunc")...
+		Constructing wrapper function "xifunc"...
+		  xifunc = xifunc(umu1,umu2,umu3,tau)
+		Constructing wrapper function "chekin"...
+		  chekin(nlyr,dtauc,ssalb,nmom,pmom,temper,wvnmlo,wvnmhi,usrtau,ntau,utau,nstr,usrang,numu,umu,nphi,phi,ibcnd,fbeam,umu0,phi0,fisot,lamber,albedo,btemp,ttemp,temis,plank,onlyfl,deltam,corint,accur,tauc,mxulv,mxumu,mxcmu,mxphi,mxsqt,msg,[maxcly,maxulv,maxumu,maxphi,maxmom,mxcly])
+		Creating wrapper for Fortran function "dref"("dref")...
+		Constructing wrapper function "dref"...
+		  dref = dref(wvnmlo,wvnmhi,mu)
+		Constructing wrapper function "lepoly"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  lepoly(nmu,m,twonm1,mu,sqt,ylm,[maxmu])
+		Creating wrapper for Fortran function "plkavg"("plkavg")...
+		Constructing wrapper function "plkavg"...
+		  plkavg = plkavg(wnumlo,wnumhi,t)
+		Constructing wrapper function "pravin"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  pravin(umu,utau,u0u,[numu,mxumu,ntau])
+		Constructing wrapper function "prtinp"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  prtinp(nlyr,dtauc,dtaucp,ssalb,nmom,pmom,temper,wvnmlo,wvnmhi,ntau,utau,nstr,numu,umu,nphi,phi,ibcnd,fbeam,umu0,phi0,fisot,lamber,albedo,btemp,ttemp,temis,deltam,plank,onlyfl,corint,accur,flyr,lyrcut,oprim,tauc,taucpr,prtmom,[maxmom])
+		Constructing wrapper function "prtint"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  prtint(uu,utau,ntau,umu,numu,phi,nphi,[maxulv,maxumu])
+		Constructing wrapper function "qgausn"...
+		  qgausn(gmu,gwt,[m])
+		Creating wrapper for Fortran function "ratio"("ratio")...
+		Constructing wrapper function "ratio"...
+		  ratio = ratio(a,b)
+		Constructing wrapper function "slftst"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  slftst(corint,accur,albedo,btemp,deltam,dtauc,fbeam,fisot,ibcnd,lamber,nlyr,plank,nphi,numu,nstr,ntau,onlyfl,phi,phi0,nmom,pmom,prnt,prntu0,ssalb,temis,temper,ttemp,umu,usrang,usrtau,utau,umu0,wvnmhi,wvnmlo,compar,flup,rfldir,rfldn,uu)
+		Constructing wrapper function "zeroal"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  zeroal(nd1,expbea,flyr,oprim,phasa,phast,phasm,taucpr,xr0,xr1,nd2,cmu,cwt,psi0,psi1,wk,z0,z1,zj,nd3,ylm0,nd4,array,cc,evecc,nd5,gl,nd6,ylmc,nd7,ylmu,nd8,kk,ll,zz,zplk0,zplk1,nd9,gc,nd10,layru,utaupr,nd11,gu,nd12,z0u,z1u,zbeam,nd13,eval,nd14,amb,apb,nd15,ipvt,z,nd16,rfldir,rfldn,flup,uavg,dfdt,nd17,albmed,trnmed,nd18,u0u,nd19,uu)
+		Constructing wrapper function "zeroit"...
+		  zeroit(a,[length])
+		Constructing wrapper function "albtrn"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  albtrn(albedo,amb,apb,array,b,bdr,cband,cc,cmu,cwt,dtaucp,eval,evecc,gl,gc,gu,ipvt,kk,ll,nlyr,nn,nstr,numu,prnt,taucpr,umu,u0u,wk,ylmc,ylmu,z,aad,evald,eveccd,wkd,sqt,albmed,trnmed,[mi,mi9m2,maxumu,mxcmu,mxumu,nnlyri])
+		Constructing wrapper function "altrin"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  altrin(gu,kk,ll,nlyr,nn,nstr,numu,taucpr,umu,u0u,wk,[mxcmu,mxumu,maxumu])
+		Constructing wrapper function "praltr"...
+		  praltr(umu,albmed,trnmed,[numu])
+		Constructing wrapper function "solve1"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  solve1(b,cband,fisot,ihom,ipvt,ll,ncol,ncut,nn,nstr,[mi9m2,mxcmu,nnlyri])
+		Constructing wrapper function "spaltr"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  spaltr(cmu,cwt,gc,kk,ll,nlyr,nn,nstr,taucpr,sflup,sfldn,[mxcmu])
+		Constructing wrapper function "errmsg"...
+		  errmsg(messag,fatal)
+		Creating wrapper for Fortran function "wrtbad"("wrtbad")...
+		Constructing wrapper function "wrtbad"...
+		  wrtbad = wrtbad(varnam)
+		Creating wrapper for Fortran function "wrtdim"("wrtdim")...
+		Constructing wrapper function "wrtdim"...
+		  wrtdim = wrtdim(dimnam,minval)
+		Creating wrapper for Fortran function "tstbad"("tstbad")...
+		Constructing wrapper function "tstbad"...
+		  tstbad = tstbad(varnam,relerr)
+		Constructing wrapper function "sgbco"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sgbco(abd,n,ml,mu,ipvt,rcond,z,[lda])
+		Constructing wrapper function "sgbfa"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sgbfa(abd,n,ml,mu,ipvt,info,[lda])
+		Constructing wrapper function "sgbsl"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sgbsl(abd,n,ml,mu,ipvt,b,job,[lda])
+		Constructing wrapper function "sgeco"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sgeco(a,n,ipvt,rcond,z,[lda])
+		Constructing wrapper function "sgefa"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sgefa(a,n,ipvt,info,[lda])
+		Constructing wrapper function "sgesl"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sgesl(a,n,ipvt,b,job,[lda])
+		Creating wrapper for Fortran function "sasum"("sasum")...
+		Constructing wrapper function "sasum"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sasum = sasum(n,sx,incx)
+		Constructing wrapper function "saxpy"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  saxpy(n,sa,sx,incx,sy,incy)
+		Creating wrapper for Fortran function "sdot"("sdot")...
+		Constructing wrapper function "sdot"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sdot = sdot(n,sx,incx,sy,incy)
+		Constructing wrapper function "sscal"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sscal(n,sa,sx,incx)
+		Constructing wrapper function "sswap"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  sswap(n,sx,incx,sy,incy)
+		Creating wrapper for Fortran function "isamax"("isamax")...
+		Constructing wrapper function "isamax"...
+getarrdims:warning: assumed shape array, using 0 instead of '*'
+		  isamax = isamax(n,sx,incx)
+		Creating wrapper for Fortran function "r1mach"("r1mach")...
+		Constructing wrapper function "r1mach"...
+		  r1mach = r1mach(i)
+		Creating wrapper for Fortran function "d1mach"("d1mach")...
+		Constructing wrapper function "d1mach"...
+		  d1mach = d1mach(i)
+		Creating wrapper for Fortran function "i1mach"("i1mach")...
+		Constructing wrapper function "i1mach"...
+		  i1mach = i1mach(i)
+		Creating wrapper for Fortran function "bdref"("bdref")...
+		Constructing wrapper function "bdref"...
+		  bdref = bdref(wvnmlo,wvnmhi,mu,mup,dphi)
+	Wrote C/API module "disort_driver_py" to file "/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_pymodule.c"
+	Fortran 77 wrappers are saved to "/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_py-f2pywrappers.f"
+  adding '/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/fortranobject.c' to sources.
+  adding '/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8' to include_dirs.
+copying /Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/f2py/src/fortranobject.c -> /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8
+copying /Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/f2py/src/fortranobject.h -> /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8
+  adding '/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_py-f2pywrappers.f' to sources.
+build_src: building npy-pkg config files
+running build_ext
+customize UnixCCompiler
+customize UnixCCompiler using build_ext
+customize Gnu95FCompiler
+Found executable /usr/local/bin/gfortran
+customize Gnu95FCompiler using build_ext
+building 'disort_driver_py' extension
+compiling C sources
+C compiler: gcc -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -I/Users/prowe/opt/anaconda3/include -arch x86_64 -I/Users/prowe/opt/anaconda3/include -arch x86_64
+
+creating /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var
+creating /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var/folders
+creating /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var/folders/p8
+creating /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn
+creating /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T
+creating /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw
+creating /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8
+compile options: '-I/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8 -I/Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include -I/Users/prowe/opt/anaconda3/include/python3.8 -c'
+gcc: /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_pymodule.c
+gcc: /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/fortranobject.c
+In file included from /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/fortranobject.c:2:
+In file included from /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/fortranobject.h:13:
+In file included from /Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include/numpy/arrayobject.h:4:
+In file included from /Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include/numpy/ndarrayobject.h:12:
+In file included from /Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include/numpy/ndarraytypes.h:1832:
+/Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:17:2: warning: "Using deprecated NumPy API, disable it with "
+      "#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION" [-W#warnings]
+#warning "Using deprecated NumPy API, disable it with " \
+ ^
+In file included from /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_pymodule.c:16:
+In file included from /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/fortranobject.h:13:
+In file included from /Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include/numpy/arrayobject.h:4:
+In file included from /Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include/numpy/ndarrayobject.h:12:
+In file included from /Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include/numpy/ndarraytypes.h:1832:
+/Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:17:2: warning: "Using deprecated NumPy API, disable it with "
+      "#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION" [-W#warnings]
+#warning "Using deprecated NumPy API, disable it with " \
+ ^
+/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_pymodule.c:216:12: warning: unused function 'f2py_size' [-Wunused-function]
+static int f2py_size(PyArrayObject* var, ...)
+           ^
+1 warning generated.
+2 warnings generated.
+compiling Fortran sources
+Fortran f77 compiler: /usr/local/bin/gfortran -Wall -g -ffixed-form -fno-second-underscore -arch x86_64 -fPIC -O3 -funroll-loops
+Fortran f90 compiler: /usr/local/bin/gfortran -Wall -g -fno-second-underscore -arch x86_64 -fPIC -O3 -funroll-loops
+Fortran fix compiler: /usr/local/bin/gfortran -Wall -g -ffixed-form -fno-second-underscore -Wall -g -fno-second-underscore -arch x86_64 -fPIC -O3 -funroll-loops
+compile options: '-I/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8 -I/Users/prowe/opt/anaconda3/lib/python3.8/site-packages/numpy/core/include -I/Users/prowe/opt/anaconda3/include/python3.8 -c'
+gfortran:f77: bdref.f
+gfortran:f77: linpak.f
+gfortran:f77: disort_driver_py.f
+gfortran:f77: disort_py.f
+gfortran:f77: errpack.f
+gfortran:f77: rdi1mach.f
+gfortran:f77: /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_py-f2pywrappers.f
+Warning: Nonconforming tab character in column 1 of line 90
+bdref.f:6.57:
+
+      REAL FUNCTION  BDREF( WVNMLO, WVNMHI, MU, MUP, DPHI )             
+                                                         1
+Warning: Unused dummy argument 'dphi' at (1)
+bdref.f:6.46:
+
+      REAL FUNCTION  BDREF( WVNMLO, WVNMHI, MU, MUP, DPHI )             
+                                              1
+Warning: Unused dummy argument 'mu' at (1)
+bdref.f:6.51:
+
+      REAL FUNCTION  BDREF( WVNMLO, WVNMHI, MU, MUP, DPHI )             
+                                                   1
+Warning: Unused dummy argument 'mup' at (1)
+bdref.f:6.42:
+
+      REAL FUNCTION  BDREF( WVNMLO, WVNMHI, MU, MUP, DPHI )             
+                                          1
+Warning: Unused dummy argument 'wvnmhi' at (1)
+bdref.f:6.34:
+
+      REAL FUNCTION  BDREF( WVNMLO, WVNMHI, MU, MUP, DPHI )             
+                                  1
+Warning: Unused dummy argument 'wvnmlo' at (1)
+disort_py.f:6149.20:
+
+         GMU( K ) = -X                                                  
+                    1
+Warning: Possible change of value in conversion from REAL(8) to REAL(4) at (1)
+disort_py.f:6150.20:
+
+         GWT( K ) = TWO / ( TMP*( EN*PM2 )**2 )                         
+                    1
+Warning: Possible change of value in conversion from REAL(8) to REAL(4) at (1)
+disort_py.f:6165.26:
+
+         GWT( LIM + 1 ) = TWO / PROD**2                                 
+                          1
+Warning: Possible change of value in conversion from REAL(8) to REAL(4) at (1)
+disort_py.f:551.59:
+
+     &             UTAUPR, UMU, UMU0, USRTAU, USRANG, msg, errflag )    
+                                                           1
+Warning: Type mismatch in argument 'err_flag' at (1); passed LOGICAL(4) to REAL(4)
+disort_py.f:1031.21:
+
+         EVAL( 1 ) = 0.5*( AA( 1,1 ) + AA( 2,2 ) + SGN*SQRT( DISCRI ) ) 
+                     1
+Warning: Possible change of value in conversion from REAL(8) to REAL(4) at (1)
+disort_py.f:1032.21:
+
+         EVAL( 2 ) = 0.5*( AA( 1,1 ) + AA( 2,2 ) - SGN*SQRT( DISCRI ) ) 
+                     1
+Warning: Possible change of value in conversion from REAL(8) to REAL(4) at (1)
+disort_py.f:1042.28:
+
+            EVEC( 2,1 ) =   AA( 2,1 ) / W                               
+                            1
+Warning: Possible change of value in conversion from REAL(8) to REAL(4) at (1)
+disort_py.f:1043.26:
+
+            EVEC( 1,2 ) = - AA( 1,2 ) / W                               
+                          1
+Warning: Possible change of value in conversion from REAL(8) to REAL(4) at (1)
+disort_py.f:1660.14:
+
+         J  = WKD( I )                                                  
+              1
+Warning: Possible change of value in conversion from REAL(8) to INTEGER(4) at (1)
+disort_py.f:1677.14:
+
+         J  = WKD( I )                                                  
+              1
+Warning: Possible change of value in conversion from REAL(8) to INTEGER(4) at (1)
+disort_py.f:1696.21:
+
+         EVAL( J ) = EVALD( J )                                         
+                     1
+Warning: Possible change of value in conversion from REAL(8) to REAL(4) at (1)
+disort_py.f:1699.27:
+
+            EVEC( J, K ) = EVECD( J, K )                                
+                           1
+Warning: Possible change of value in conversion from REAL(8) to REAL(4) at (1)
+disort_py.f:630.53:
+
+            CALL LEPOLY( NCOS, MAZIM, MXCMU, NSTR-1, ANGCOS, SQT, YLM0 )
+                                                     1
+Warning: Rank mismatch in argument 'mu' at (1) (rank-1 and scalar)
+disort_py.f:2500.46:
+
+     &                   USRANG, msg, err_flag )                        
+                                              1
+Warning: Unused dummy argument 'err_flag' at (1)
+disort_py.f:20.59:
+
+     &                   PLANK, ONLYFL, ACCUR, PRNT, HEADER, MAXCLY,    
+                                                           1
+Warning: Unused dummy argument 'header' at (1)
+linpak.f: In function ‘sgefa’:
+linpak.f:1606:0: warning: ‘__result_isamax’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+       INTEGER FUNCTION ISAMAX( N, SX, INCX )
+ ^
+linpak.f: In function ‘isamax’:
+linpak.f:1665:0: warning: ‘__result_isamax’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+       END
+ ^
+linpak.f:1606:0: note: ‘__result_isamax’ was declared here
+       INTEGER FUNCTION ISAMAX( N, SX, INCX )
+ ^
+linpak.f: In function ‘sgbfa’:
+linpak.f:1606:0: warning: ‘__result_isamax’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+disort_py.f: In function ‘usrint’:
+disort_py.f:4779:0: warning: ‘exp2’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+                F1N  = UTAUPR( LU ) + UMU( IU ) - FACT * EXPN
+ ^
+disort_py.f:4741:0: warning: ‘exp1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+                   EXPN   = -DTAU1 / UMU( IU )*EXP1
+ ^
+disort_py.f:4700:0: warning: ‘exp0’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+                   EXPN  = ( EXP0 - EXPBEA( LYU )*EXP2 ) / DENOM
+ ^
+disort_py.f: In function ‘qgausn’:
+disort_py.f:6133:0: warning: ‘p’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+          P2PRI  = ( TWO*X*PPR - NNP1*P )*TMP
+ ^
+disort_py.f: In function ‘asymtx’:
+disort_py.f:1503:0: warning: ‘r’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+             S  = SIGN( SQRT( P*P + Q*Q + R*R ), P )
+ ^
+disort_py.f:1503:0: warning: ‘q’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+disort_py.f:1503:0: warning: ‘p’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+disort_py.f:983:0: warning: ‘lb’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+       INTEGER   I, II, IN, J, K, KA, KKK, L, LB, LLL, N, N1, N2
+ ^
+/usr/local/bin/gfortran -Wall -g -arch x86_64 -Wall -g -undefined dynamic_lookup -bundle /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_pymodule.o /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/fortranobject.o /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/disort_driver_py.o /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/disort_py.o /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/errpack.o /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/linpak.o /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/rdi1mach.o /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/bdref.o /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw/src.macosx-10.9-x86_64-3.8/disort_driver_py-f2pywrappers.o -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin13/4.9.0 -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin13/4.9.0/../../.. -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin13/4.9.0/../../.. -lgfortran -o ./disort_driver_py.cpython-38-darwin.so
+Removing build directory /var/folders/p8/7byhrdpj3x7fjp_rkn7tnmx00000gn/T/tmp1lf63fbw
