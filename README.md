@@ -34,7 +34,8 @@ See the [LICENSE] LICENSE file for details.
 ## Acknowledgments
 (please let us know if any references are missing):
 
-1) If this code is used in work leading to a publication, please include an acknowledgement to P.M. Rowe, S. Neshyba, and V. P. Walden. A reference is pending, so please contact Penny Rowe (prowe@harbornet.com for proper referencing)
+1) If this code is used in work leading to a publication, please reference: Rowe, P. M., Cox, C., Neshyba, S., & Walden, V. P. (2019). Toward autonomous surface-based infrared remote sensing of polar clouds: retrievals of cloud optical and microphysical properties. Atmospheric Measurement Techniques, 12(9), 5071–5086. http://doi.org/10.5194/amt-12-5071-2019
+
 
 2) DISORT references: 
 
