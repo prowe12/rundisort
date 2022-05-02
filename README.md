@@ -17,7 +17,7 @@ A codebase for running DISORT from PYTHON to perform radiative transfer calculat
 
 5) If the output file is not named disort_driver_py.so, but rather something similar but with additional characters, rename to disort_driver_py.so.
 
-6) Open Spyder from the terminal. Try out the code in Python using “sample_run.py” in the sampleRun folder. If the code runs successfully, variables will be created and printed to the workspace. Compare this to the text in “disort_out_sample_run.txt.” 
+6) Try out the code in Python by running “sample_run.py” from the sampleRun folder. If the code runs successfully, variables will be created and printed to the workspace. Compare the output to the results given in the file “disort_out_sample_run.txt.” 
 
 ## Authors
   - **Penny Rowe** https://github.com/prowe12
