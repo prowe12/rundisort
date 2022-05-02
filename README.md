@@ -1,30 +1,21 @@
-runDisort_py
+rundisort
 ==============
 
 This code runs DISORT from PYTHON to perform radiative transfer calculations for layered model atmospheres, including absorption and scattering. Inputs include gaseous optical depths, atmospheric parameters, and cloud properties. Radiative transfer is performed using DISORT 2.0 Beta (from ftp://climate1.gsfc.nasa.gov/wiscombe/Multiple_Scatt/). Using f2py, inputs and outputs can be passed directly to and from the DISORT fortran code. This now uses PYTHON versions 3 and up. This is a work in progress, and may have bugs. It is shared without guarantees of any kind. Improvements are ongoing, and we welcome feedback.
 
-To use this code, please do the following:
+Dependencies:
 
-1) You will need Fortran.  I used gfortran.
+1) You will need gfortran. You can install gfortran for your operating system as described here: https://fortran-lang.org/learn/os_setup/install_gfortran.
 
-2) Install Python (version 3+) on your computer if you don't already have it (e.g. Anaconda install, from https://www.continuum.io/downloads). The install includes Spyder, a nice editor, including a debugger, for running python.
+2) Install Python (version 3+) on your computer if you don't already have it (e.g. Anaconda install, from https://www.continuum.io/downloads).
 
-3) Copy the files in the source directory onto your computer.
+3) Clone the repository or copy the files in the source directory onto your computer.
 
-4) Within the installation directory, modify the makefile as needed for the fortran compiler you have; here we use gfortan. Run "make" to compile disort_driver_py.so (a python library).
+4) Within the installation directory, modify the makefile as needed for your gfortran compiler. Run "make" to compile disort_driver_py.so (a python library).
 
 5) If the output file is not named disort_driver_py.so, but rather something similar but with additional characters, rename to disort_driver_py.so.
 
 6) Open Spyder from the terminal. Try out the code in Python using “sample_run.py” in the sampleRun folder. If the code runs successfully, variables will be created and printed to the workspace. Compare this to the text in “disort_out_sample_run.txt.” 
-
-
-
-Planned upgrades: 
-1) A new version of DISORT, DISORT3 is available. I hope to incorporate this soon. 
-2) This code requires gaseous optical depths as input. We use the line-by-line radiative transfer model (LBLRTM; http://rtweb.aer.com/lblrtm.html) for this purpose. A github directory for codes for running LBLRTM from MATLAB or Octave, runLBLRTM_mat, is in progress. This code is currently available on request.
-3) A matlab version is also available on this github site (runDisort_mat).
-4) I hope to incorporate single scattering parameter files for more realistic ice habits soon.
-
 
 
 Acknowledging use of this code (please let us know if any references are missing):
