@@ -6,7 +6,7 @@ A codebase for running DISORT from PYTHON to perform radiative transfer calculat
 
 ## Dependencies:
 
-1) You will need gfortran. You can install gfortran for your operating system as described here: https://fortran-lang.org/learn/os_setup/install_gfortran.
+1) Install gfortran. You can install gfortran for your operating system as described here: https://fortran-lang.org/learn/os_setup/install_gfortran or here https://sourceforge.net/projects/gcc-g95/.
 
 2) Install Python (version 3+) on your computer if you don't already have it (e.g. Anaconda install, from https://www.continuum.io/downloads).
 

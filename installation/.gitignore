@@ -1,7 +1,10 @@
 
 
 # Log file for make 
-make_log.rtf
+make_log*
+
+# notes and planned improvements
+extras/
 
 # Compiled source #
 ###################
@@ -11,6 +14,7 @@ make_log.rtf
 *.exe
 *.o
 *.so
+*.dSYM
 
 # Packages #
 ############
