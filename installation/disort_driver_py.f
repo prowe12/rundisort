@@ -3,15 +3,15 @@ c RCS version control information:
 c $Header: DISOTEST.f,v 2.1 2000/04/03 21:21:55 laszlo Exp $
 c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-      SUBROUTINE  disort_driver(NLYR, DTAUC, SSALB, NMOM,
-     &                   NCLDLYR, CLDLYR, PMOM_CLD, TEMPER,
-     &                   WVNMLO, WVNMHI, USRTAU, NTAU, UTAU, NSTR,
-     &                   USRANG, NUMU, UMU, NPHI, PHI, IBCND, FBEAM,
+      SUBROUTINE  disort_driver(NLYR,DTAUC,SSALB,NMOM,
+     &                   NCLDLYR,CLDLYR,PMOM_CLD, TEMPER,
+     &                   WVNMLO,WVNMHI,USRTAU, NTAU, UTAU, NSTR,
+     &                   USRANG,NUMU, UMU, NPHI, PHI, IBCND, FBEAM,
      &                   UMU0, PHI0, FISOT, LAMBER, ALBEDO, BTEMP,
-     &                   TTEMP, TEMIS, PLANK, ONLYFL, HEADER,
-     &                   MAXCLY, MAXULV, MAXUMU, MAXPHI, MAXMOM,
-     &                   RFLDIR, RFLDN, FLUP, DFDT, UAVG, UU, ALBMED, 
-     &                   TRNMED, msg, errflag)
+     &                   TTEMP, TEMIS, PLANK, ONLYFL,HEADER,
+     &                   MAXCLY, MAXULV, MAXUMU, MAXPHI,MAXMOM,
+     &                   RFLDIR,RFLDN,
+     &                   FLUP,DFDT,UAVG,UU,ALBMED,TRNMED)
 
 
 c    Runs DISORT using inputs from Python.
@@ -42,11 +42,10 @@ c
 c
 
 
-      INTEGER  MAXCLY, MAXMOM, MAXPHI, MAXULV, MAXUMU, CLDLYR(*),
-     &         NCLDLYR, I, J, ICLDLYR
-      CHARACTER  HEADER*127, msg*127
-      LOGICAL  LAMBER, PLANK, ONLYFL, PRNT(5), USRANG, USRTAU,
-     &         errflag
+      INTEGER  MAXCLY, MAXMOM, MAXPHI, MAXULV, MAXUMU, CLDLYR(*), NCLDLYR
+     &         I, J, ICLDLYR
+      CHARACTER  HEADER*127
+      LOGICAL  LAMBER, PLANK, ONLYFL, PRNT(5), USRANG, USRTAU
       INTEGER  IBCND, NMOM, NLYR, NUMU, NSTR, NPHI, NTAU
       REAL     ACCUR, ALBEDO, BTEMP, DTAUC( MAXCLY ), FBEAM, FISOT,
      &         PHI( MAXPHI ), PMOM( 0:MAXMOM, MAXCLY ), 
@@ -82,7 +81,6 @@ cf2py intent(in)  :: TTEMP, TEMIS,PLANK, ONLYFL,HEADER,
 cf2py intent(in)  :: MAXCLY,MAXULV, MAXUMU, MAXPHI, MAXMOM
 
 cf2py intent(out) :: RFLDIR,RFLDN,FLUP,DFDT,UAVG,UU,ALBMED,TRNMED
-cf2py intent(out) :: msg, errflag
 
 
 
@@ -103,26 +101,13 @@ c   ..Fill in the moments from the namelist
         ENDDO
       ENDDO
 
-c   ..** WARNING **  If UMU0 equals one of the
-c             computational polar angle cosines, a singularity
-c             occurs;  hence this is treated as a fatal
-c             error. The problem is most likely to
-c             occur when NSTR/2 is odd and UMU0 = 0.5;
-c             otherwise, it is almost impossible to hit a
-c             computational angle by chance.  The problem can
-c             easily be corrected by changing NSTR.
-c
-c   ..Here we check for cases where this occurred and exclude them
-c       IF (round(UMU0,5)==0.23724) and (NSTR==16) and (NMOM>=19): NSTR = 18
-
 
 
 
 c   ..Don't let number streams exceed number of legendre moments
-c     (this has to be handled BEFORE calling this code)
-c      IF (NSTR .GT. NMOM) THEN
-c		      NSTR = NMOM
-c      ENDIF
+      IF (NSTR .GT. NMOM) THEN
+		NMOM = NSTR
+      ENDIF
 
 c    .. UTAU specifies the optical depth (layer height) at which
 c    .. we want values reported. This is often either 0 (TOA)
@@ -149,7 +134,9 @@ c   ..Call disort..
      &                 TTEMP, TEMIS, PLANK, ONLYFL, ACCUR, PRNT,
      &                 HEADER, MAXCLY, MAXULV, MAXUMU, MAXPHI,
      &                 MAXMOM, RFLDIR, RFLDN, FLUP, DFDT, UAVG, UU,
-     &                 ALBMED, TRNMED, msg, errflag )
+     &                 ALBMED, TRNMED )
+
+
 
 
       RETURN

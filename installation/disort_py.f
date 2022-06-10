@@ -4,8 +4,6 @@ c       Commented out the following lines which display header
 c          IF( .NOT.PASS1 .AND. LEN( HEADER ).NE.0 )
 c        &    WRITE( *,'(//,1X,100(''*''),/,A,/,1X,100(''*''))' )
 c        &    ' DISORT: '//HEADER
-c
-c    Also added msg, errflag to outputs in DISORT call
 
 c
 c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -19,8 +17,7 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      &                   FISOT, LAMBER, ALBEDO, BTEMP, TTEMP, TEMIS,
      &                   PLANK, ONLYFL, ACCUR, PRNT, HEADER, MAXCLY,
      &                   MAXULV, MAXUMU, MAXPHI, MAXMOM, RFLDIR, RFLDN,
-     &                   FLUP, DFDT, UAVG, UU, ALBMED, TRNMED,
-     &                   msg, errflag )
+     &                   FLUP, DFDT, UAVG, UU, ALBMED, TRNMED )
 
 c *******************************************************************
 c       Plane-parallel discrete ordinates radiative transfer program
@@ -371,10 +368,9 @@ c     .. Parameters ..
      &          NNLYRI = MXCMU*MXCLY, MXSQT = 1000 )
 c     ..
 c     .. Scalar Arguments ..
-c                                 ** added msg and errflag below
-c                                 ** PMR 2020/1/24
-      CHARACTER HEADER*127, msg*127
-      LOGICAL   LAMBER, ONLYFL, PLANK, USRANG, USRTAU, errflag
+
+      CHARACTER HEADER*127
+      LOGICAL   LAMBER, ONLYFL, PLANK, USRANG, USRTAU
       INTEGER   IBCND, MAXCLY, MAXMOM, MAXPHI, MAXULV, MAXUMU, NLYR,
      &          NMOM, NPHI, NSTR, NTAU, NUMU
       REAL      ACCUR, ALBEDO, BTEMP, FBEAM, FISOT, PHI0, TEMIS, TTEMP,
@@ -451,12 +447,6 @@ c     ..
       DELTAM = .TRUE.
       CORINT = .TRUE.
 
-c                            ** Set msg and error flag to defaults
-c                            ** PMR 2020/01/24
-      msg = ''
-      errflag = .False.
-
-
 
       IF( PASS1 ) THEN
 
@@ -508,15 +498,13 @@ c                                  ** eigenvalue/vector computation
    30 CONTINUE
 c                                ** Check input dimensions and variables
 
-c                                ** added msg to call below 
-c                                ** PMR, 2020/01/28
       CALL CHEKIN( NLYR, DTAUC, SSALB, NMOM, PMOM, TEMPER, WVNMLO,
      &             WVNMHI, USRTAU, NTAU, UTAU, NSTR, USRANG,
      &             NUMU, UMU, NPHI, PHI, IBCND, FBEAM, UMU0,
      &             PHI0, FISOT, LAMBER, ALBEDO, BTEMP, TTEMP,
      &             TEMIS, PLANK, ONLYFL, DELTAM, CORINT, ACCUR,
      &             TAUC, MAXCLY, MAXULV, MAXUMU, MAXPHI, MAXMOM,
-     &             MXCLY, MXULV, MXUMU, MXCMU, MXPHI, MXSQT, msg )
+     &             MXCLY, MXULV, MXUMU, MXCMU, MXPHI, MXSQT )
 
 c                                 ** Zero internal and output arrays
 
@@ -542,18 +530,12 @@ c                                 ** Zero internal and output arrays
      &              MAXUMU*MAXULV*MAXPHI, UU )
 
 c                                 ** Perform various setup operations
-c                                 ** Added msg and errflag to call
-c                                 ** PMR 2020/01/24
+
       CALL SETDIS( CMU, CWT, DELTAM, DTAUC, DTAUCP, EXPBEA, FBEAM, FLYR,
      &             GL, IBCND, LAYRU, LYRCUT, MAXMOM, MAXUMU, MXCMU,
      &             NCUT, NLYR, NTAU, NN, NSTR, PLANK, NUMU, ONLYFL,
      &             CORINT, OPRIM, PMOM, SSALB, TAUC, TAUCPR, UTAU,
-     &             UTAUPR, UMU, UMU0, USRTAU, USRANG, msg, errflag )
-     
-      IF (errflag) THEN
-         UU = -999
-         RETURN
-      END IF
+     &             UTAUPR, UMU, UMU0, USRTAU, USRANG )
 
 c                                 ** Print input information
       IF( PRNT( 1 ) )
@@ -678,7 +660,7 @@ c                                  ** beam source
             IF( FBEAM.GT.0.0 )
      &          CALL UPBEAM( ARRAY, CC, CMU, DELM0, FBEAM, GL( 0,LC ),
      &                       IPVT, MAZIM, MXCMU, NN, NSTR, PI, UMU0, WK,
-     &                       YLM0, YLMC, ZJ, ZZ( 1,LC ), msg )
+     &                       YLM0, YLMC, ZJ, ZZ( 1,LC ) )
 
 c                              ** Calculate particular solutions of Eq.
 c                              ** SS(15), STWL(25) for thermal emission
@@ -2497,9 +2479,7 @@ c                              ** Eq. STWL (A.13)
      &                   MXCMU, NCUT, NLYR, NTAU, NN, NSTR, PLANK, NUMU,
      &                   ONLYFL, CORINT, OPRIM, PMOM, SSALB, TAUC,
      &                   TAUCPR, UTAU, UTAUPR, UMU, UMU0, USRTAU,
-     &                   USRANG, msg, err_flag )
-c                                 ** Added msg to call above
-c                                 ** PMR 2020/01/24
+     &                   USRANG )
 
 c          Perform miscellaneous setting-up operations
 c
@@ -2542,12 +2522,8 @@ c   Calls- QGAUSN, ERRMSG
 c ---------------------------------------------------------------------
 
 c     .. Scalar Arguments ..
-c                                 ** added msg and errflag below
-c                                 ** PMR 2020/1/24
-      CHARACTER msg*127
 
-      LOGICAL   CORINT, DELTAM, LYRCUT, ONLYFL, PLANK, USRANG, 
-     &          USRTAU, errflag
+      LOGICAL   CORINT, DELTAM, LYRCUT, ONLYFL, PLANK, USRANG, USRTAU
       INTEGER   IBCND, MAXMOM, MAXUMU, MXCMU, NCUT, NLYR, NN, NSTR,
      &          NTAU, NUMU
       REAL      FBEAM, UMU0
@@ -2684,25 +2660,12 @@ c                                  ** Downward (neg) angles and weights
 
 
       IF( FBEAM.GT.0.0 ) THEN
+c                               ** Compare beam angle to comput. angles
          DO 90 IQ = 1, NN
 
-c                               ** Compare beam angle to comput. angles
-c                               ** Change .True. to .False. below such that
-c                               ** error message is non-fatal, because
-c                               ** fatal errors kill the python kernel
-c                               ** Instead quit nicely with outputs as nan
-c                               ** and an error message returned
-c                               ** Also set "message" to the error message
-c                               ** Change IF statement to IF THEN statement
-c                               ** Set outputs to -999 and RETURN
-c                               ** PMR 2020/01/24
-c
-            IF( ABS( UMU0-CMU( IQ ) )/UMU0.LT.1.E-4 ) THEN
-               msg = 
-     &          'SETDIS--beam angle=computational angle; change NSTR'
-               CALL ERRMSG(msg,.False. )
-               errflag = .True.
-            END IF
+            IF( ABS( UMU0-CMU( IQ ) )/UMU0.LT.1.E-4 ) CALL ERRMSG(
+     &          'SETDIS--beam angle=computational angle; change NSTR',
+     &          .True. )
 
    90    CONTINUE
 
@@ -4173,9 +4136,7 @@ c
 
       SUBROUTINE UPBEAM( ARRAY, CC, CMU, DELM0, FBEAM, GL, IPVT, MAZIM,
      &                   MXCMU, NN, NSTR, PI, UMU0, WK, YLM0, YLMC, ZJ,
-     &                   ZZ, msg )
-
-c         added msg to call above. PMR 2020/01/28
+     &                   ZZ )
 
 c         Finds the incident-beam particular solution of SS(18),
 c         STWL(24a)
@@ -4210,13 +4171,6 @@ c                 that system
 c
 c       ZZ     :  Permanent storage for ZJ, but re-ordered
 c
-c       msg    :  This is input and output.
-c                 Captures and passes back any error messages.
-c                 Note that it will clobber previous contents of message;
-c                 that is, you can only currently have one message at
-c                 a time. Others will still be printed to the terminal.
-c                 Added by PMR, 2020/01/28
-c
 c
 c   I N T E R N A L    V A R I A B L E S:
 c
@@ -4228,10 +4182,6 @@ c
 c   Called by- DISORT
 c   Calls- SGECO, ERRMSG, SGESL
 c +-------------------------------------------------------------------+
-
-
-c     .. character (added by PMR 2020/01/28) ...
-      CHARACTER msg*127
 
 c     .. Scalar Arguments ..
 
@@ -4279,13 +4229,8 @@ c                  ** (NOTE:  ARRAY is altered)
 
       CALL SGECO( ARRAY, MXCMU, NSTR, IPVT, RCOND, WK )
 
-c                  ** Below, I change the if statement to an if then statement
-c                  ** and set the error message to msg
-c                  ** PMR 2020/01/04
-      IF( 1.0 + RCOND.EQ.1.0 ) THEN
-         msg = 'UPBEAM--SGECO says matrix near singular'
-c         CALL ERRMSG(msg,.FALSE.)
-      END IF
+      IF( 1.0 + RCOND.EQ.1.0 )
+     &    CALL ERRMSG('UPBEAM--SGECO says matrix near singular',.FALSE.)
 
 c                ** Solve linear system with coeff matrix ARRAY
 c                ** (assumed already L-U decomposed) and R.H. side(s)
@@ -4919,17 +4864,13 @@ c ******************************************************************
      &                   PHI0, FISOT, LAMBER, ALBEDO, BTEMP, TTEMP,
      &                   TEMIS, PLANK, ONLYFL, DELTAM, CORINT, ACCUR,
      &                   TAUC, MAXCLY, MAXULV, MAXUMU, MAXPHI, MAXMOM,
-     &                   MXCLY, MXULV, MXUMU, MXCMU, MXPHI, MXSQT, msg )
+     &                   MXCLY, MXULV, MXUMU, MXCMU, MXPHI, MXSQT )
 
 c           Checks the input dimensions and variables
-c           Added msg to call above. PMR 2020/01/28
 
 c   Calls- WRTBAD, WRTDIM, DREF, ERRMSG
 c   Called by- DISORT
 c --------------------------------------------------------------------
-
-c     .. character (added by PMR 2020/01/28) ...
-      CHARACTER msg*127
 
 c     .. Scalar Arguments ..
 
@@ -5196,13 +5137,10 @@ c                    ** angles does not assume unphysical values
 
          DO 80 LC = 1, NLYR
 
-c                         .. Changed the following to If Then statement
-c                         .. and added "msg". PMR 2020/01/28
-            IF( ABS( TEMPER( LC )-TEMPER( LC-1 ) ).GT.10.0 ) Then
-               msg = 'CHEKIN--vertical temperature step may '
-     &                      //'be too large for good accuracy'
-               CALL ERRMSG(msg,.False. )
-            END IF
+            IF( ABS( TEMPER( LC )-TEMPER( LC-1 ) ).GT.10.0 )
+     &          CALL ERRMSG('CHEKIN--vertical temperature step may'
+     &                      //' be too large for good accuracy',
+     &                      .False. )
    80    CONTINUE
 
       END IF
