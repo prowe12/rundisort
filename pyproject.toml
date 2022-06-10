@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "rundisort"
+version = "0.1.0"
+description = "Run DISORT from Python3.x with f2py"
+authors = ["Penny Rowe"]
+license = "GPL-3.0-or-later"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
