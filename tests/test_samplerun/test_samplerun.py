@@ -14,51 +14,52 @@ Copyright Penny M. Rowe and NorthWest Research Associates
 
 # Modules
 import numpy as np
+import pytest
 
 # DISORT modules
 from rundisort import disort_driver_py
 #import disort4_driver_py
 
+# Setup and teardown: the fixtures
+@pytest.fixture
+def get_disortinput():
+    """
+    Get inputs to DISORT as a dictionary
+    @yield disortinput
+    """
 
-def test1():
-    """Test 1: All DTAUC > 3E-1"""
-    
-    #&disortinput
-    NSTR = 16
-    NLYR = 3
-    NTAU = 2
-    UTAU = [2.59751963615417E+00, 0.00000000000000E+00]
-    NPHI = 1
-    PHI = [0.00000000000000E+00]
-    IBCND = 0
-    UMU0 = 0.00000000000000E+00
-    PHI0 = 5.09752949553775E+01
-    ALBEDO = 2.00000000000000E-02
-    SSALB = [3.97345705305091E-01, 0.00000000000000E+00, 0.00000000000000E+00]
-    FBEAM = 0.00000000000000E+00
-    FISOT =0.00000000000000E+00
-    DTAUC = [1.79751963461538E+00, 3.00000000000000E-01, 5.00000000000000E-01]
-    WVNMLO =9.49500000000000E+02
-    WVNMHI = 9.50500000000000E+02
-    USRTAU = 1
-    NUMU = 6
-    UMU = np.array([-1.00E+00, -5.0E-01, -1.0E-02, 1.0E-02, 5.0E-01, 1.0E+00])
-    USRANG = 1
-    LAMBER = 1
-    TEMIS = 0.00000000000000E+00
-    PLANK = 1
-    ONLYFL = 0
-    TEMPER = [2.730E+02, 2.6300E+02, 2.530000E+02, 2.4300E+02]
-    TTEMP = 2.73000000000000E+02
-    BTEMP = 2.43000000000000E+02
-    NMOM = 154
-    NCLDLYR = 1
-    HEADER = ' '
-
-    #&PMOMINPUT
-    CLDLYR = 1
-    NCLDLYR = 1
-    PMOM_CLD = np.array([[\
+    disortinput = {
+    'NSTR': 16,
+    'NLYR': 3,
+    'NTAU': 2,
+    'NPHI': 1,
+    'PHI': [0.00000000000000E+00],
+    'IBCND': 0,
+    'UMU0': 0.00000000000000E+00,
+    'PHI0': 5.09752949553775E+01,
+    'ALBEDO': 2.00000000000000E-02,
+    'SSALB': [3.97345705305091E-01, 0.00000000000000E+00, 0.00000000000000E+00],
+    'FBEAM': 0.00000000000000E+00,
+    'FISOT': 0.00000000000000E+00,
+    'WVNMLO': 949.50,
+    'WVNMHI': 950.50,
+    'USRTAU': 1,
+    'NUMU': 6,
+    'UMU': np.array([-1.00E+00, -5.0E-01, -1.0E-02, 1.0E-02, 5.0E-01, 1.0E+00]),
+    'USRANG': 1,
+    'LAMBER': 1,
+    'TEMIS': 0.00000000000000E+00,
+    'PLANK': 1,
+    'ONLYFL': 0,
+    'TEMPER': [2.730E+02, 2.6300E+02, 2.530000E+02, 2.4300E+02],
+    'TTEMP': 2.73000000000000E+02,
+    'BTEMP': 2.43000000000000E+02,
+    'NMOM': 154,
+    'NCLDLYR': 1,
+    'HEADER': ' ',
+    'CLDLYR': 1,
+    'NCLDLYR': 1,
+    'PMOM_CLD': np.array([[\
       1.00000000000000E+00,  9.48125750204321E-01,  8.77985610583193E-01,
       7.98549223777405E-01,  7.18558236968330E-01,  6.42693810867911E-01,
       5.73678519005854E-01,  5.13010454531465E-01,  4.61163809320369E-01,
@@ -110,15 +111,27 @@ def test1():
       3.79681930158634E-05,  3.43242766269775E-05,  3.07072106394779E-05,
       2.71188751747762E-05,  2.35647473451367E-05,  2.00532694158332E-05,
       1.65953612160422E-05,  1.32037184522940E-05,  9.89202934043430E-06,
-      6.67410987669309E-06,  3.56329868017677E-06]]).T
-    
-    NCLDLYR = PMOM_CLD.shape[1]
-    MAXMOM = PMOM_CLD.shape[0]-1
+      6.67410987669309E-06,  3.56329868017677E-06]]).T,
+    }
+
+    yield disortinput
+
+
+def test1(get_disortinput):
+    """Test 1: All DTAUC > 3E-1"""
+
+    disortinput = get_disortinput
+    DTAUC = [1.79751963461538E+00, 3.00000000000000E-01, 5.00000000000000E-01]
+    UTAU = [sum(DTAUC),  0.0000E+00]
+    #UTAU = [2.59751963615417E+00, 0.00000000000000E+00]
+
+    NCLDLYR = disortinput['PMOM_CLD'].shape[1]
+    MAXMOM = disortinput['PMOM_CLD'].shape[0]-1
     MAXULV = len(UTAU)
     MAXCLY = len(DTAUC)
-    MAXUMU = len(UMU)
-    MAXPHI = len(PHI)
-    
+    MAXUMU = len(disortinput['UMU'])
+    MAXPHI = len(disortinput['PHI'])
+
     RFLDIR, \
     RFLDN, \
     FLUP, \
@@ -128,22 +141,47 @@ def test1():
     ALBMED, \
     TRNMED, \
     ERRMSG, \
-    ERRFLAG = disort_driver_py.disort_driver(NLYR, DTAUC, SSALB, NMOM, NCLDLYR,
-                                             CLDLYR, PMOM_CLD, TEMPER, WVNMLO,
-                                             WVNMHI, USRTAU, NTAU, UTAU, NSTR,
-                                             USRANG, NUMU, UMU, NPHI, PHI, IBCND,
-                                             FBEAM, UMU0, PHI0, FISOT, LAMBER,
-                                             ALBEDO, BTEMP, TTEMP, TEMIS, PLANK,
-                                             ONLYFL, HEADER, MAXCLY, MAXULV,
-                                             MAXUMU, MAXPHI, MAXMOM)
-    
+    ERRFLAG = disort_driver_py.disort_driver(disortinput['NLYR'],
+                                             DTAUC,
+                                             disortinput['SSALB'],
+                                             disortinput['NMOM'],
+                                             NCLDLYR,
+                                             disortinput['CLDLYR'],
+                                             disortinput['PMOM_CLD'],
+                                             disortinput['TEMPER'],
+                                             disortinput['WVNMLO'],
+                                             disortinput['WVNMHI'],
+                                             disortinput['USRTAU'],
+                                             disortinput['NTAU'],
+                                             UTAU,
+                                             disortinput['NSTR'],
+                                             disortinput['USRANG'],
+                                             disortinput['NUMU'],
+                                             disortinput['UMU'],
+                                             disortinput['NPHI'],
+                                             disortinput['PHI'],
+                                             disortinput['IBCND'],
+                                             disortinput['FBEAM'],
+                                             disortinput['UMU0'],
+                                             disortinput['PHI0'],
+                                             disortinput['FISOT'],
+                                             disortinput['LAMBER'],
+                                             disortinput['ALBEDO'],
+                                             disortinput['BTEMP'],
+                                             disortinput['TTEMP'],
+                                             disortinput['TEMIS'],
+                                             disortinput['PLANK'],
+                                             disortinput['ONLYFL'],
+                                             disortinput['HEADER'],
+                                             MAXCLY, MAXULV, MAXUMU,
+                                             MAXPHI, MAXMOM)
+
     # RFLDN: Diffuse down flux, sfc:
-    print(RFLDN)
     assert np.isclose(RFLDN[0], 0.13878909)
-    
+
     # FLUP: Diffuse upward flux, toa
     assert np.isclose(FLUP[1], 0.1894969)
-    
+
     # UU[:,0]: down radiance(z. ang), sfc
     assert np.allclose(UU[:,0], [[0.04285485],
                                  [0.04521359],
@@ -151,7 +189,7 @@ def test1():
                                  [0.03711424],
                                  [0.03711424],
                                  [0.03711424]])
-    
+
     # UU[:,1]: up radiance(z. ang), toa
     assert np.allclose(UU[:,1], [[0.],
                                  [0.],
@@ -161,99 +199,500 @@ def test1():
                                  [0.0567358 ]])
 
 
-def test1():
-    """Test 1: All DTAUC > 3E-1"""
+def test_3em3(get_disortinput):
+    """
+    Second DTAUC = 3E-3
+    This optical depth is small compared to the other ods (1.8 and 0.5),
+    Here we test that the answers are as expected, and also show that the
+    absolute differences for the DISORT output for this case compared to
+    the case below with the 2nd DTAUC = 3E-4 are within
+    1E-4 W/m2 for fluxes,
+    and within 2E-5 W/(m2 str-1 cm-1) for radiances.
+    e.g. 0.1 mW/m2 for fluxes, and 0.2 mW/(m2 str-1 cm-1) for radiances.
+    Because we should not be running in to precision errors yet, 
+    this value, 0.2 mW/(m2 str-1 cm-1), is  expected to be the difference 
+    due to increasing the 2nd DTAUC from 0.0003 to 0.003. Therefore,
+    to "zero-out" the optical depth in a level, use an optical depth <= 0.0003
+    """
 
-    # # .. Test 2: Some DTAUC < 1E-5
-    # DTAUC = [1.8E+00,  3.0E-8,  5.00000000000000E-01]
-    # UTAU = [sum(DTAUC),  0.0000E+00]
-    
-    # RFLDIR, \
-    # RFLDN, \
-    # FLUP, \
-    # DFDT, \
-    # UAVG, \
-    # UU, \
-    # ALBMED, \
-    # TRNMED, \
-    # ERRMSG, \
-    # ERRFLAG = disort_driver_py.disort_driver(NLYR, DTAUC, SSALB, NMOM, NCLDLYR,
-    #                                           CLDLYR, PMOM_CLD, TEMPER, WVNMLO,
-    #                                           WVNMHI, USRTAU, NTAU, UTAU, NSTR,
-    #                                           USRANG, NUMU, UMU, NPHI, PHI, IBCND,
-    #                                           FBEAM, UMU0, PHI0, FISOT, LAMBER,
-    #                                           ALBEDO, BTEMP, TTEMP, TEMIS, PLANK,
-    #                                           ONLYFL, HEADER, MAXCLY, MAXULV,
-    #                                           MAXUMU, MAXPHI, MAXMOM)
-    # print_results(RFLDN, FLUP, UU)
+    DTAUC = [1.8E+00, 3.0E-3, 5.0E-01]
 
-# del RFLDN, FLUP, UU
+    UTAU = [sum(DTAUC), 0.0000E+00]
+    MAXULV = len(UTAU)
+    MAXCLY = len(DTAUC)
 
-# UTAU = [sum(DTAUC),  0.0000E+00]
+    disortinput = get_disortinput
+    NCLDLYR = disortinput['PMOM_CLD'].shape[1]
+    MAXMOM = disortinput['PMOM_CLD'].shape[0]-1
+    MAXUMU = len(disortinput['UMU'])
+    MAXPHI = len(disortinput['PHI'])
+
+    RFLDIR, \
+    RFLDN, \
+    FLUP, \
+    DFDT, \
+    UAVG, \
+    UU, \
+    ALBMED, \
+    TRNMED, \
+    ERRMSG, \
+    ERRFLAG = disort_driver_py.disort_driver(disortinput['NLYR'],
+                                             DTAUC,
+                                             disortinput['SSALB'],
+                                             disortinput['NMOM'],
+                                             NCLDLYR,
+                                             disortinput['CLDLYR'],
+                                             disortinput['PMOM_CLD'],
+                                             disortinput['TEMPER'],
+                                             disortinput['WVNMLO'],
+                                             disortinput['WVNMHI'],
+                                             disortinput['USRTAU'],
+                                             disortinput['NTAU'],
+                                             UTAU,
+                                             disortinput['NSTR'],
+                                             disortinput['USRANG'],
+                                             disortinput['NUMU'],
+                                             disortinput['UMU'],
+                                             disortinput['NPHI'],
+                                             disortinput['PHI'],
+                                             disortinput['IBCND'],
+                                             disortinput['FBEAM'],
+                                             disortinput['UMU0'],
+                                             disortinput['PHI0'],
+                                             disortinput['FISOT'],
+                                             disortinput['LAMBER'],
+                                             disortinput['ALBEDO'],
+                                             disortinput['BTEMP'],
+                                             disortinput['TTEMP'],
+                                             disortinput['TEMIS'],
+                                             disortinput['PLANK'],
+                                             disortinput['ONLYFL'],
+                                             disortinput['HEADER'],
+                                             MAXCLY, MAXULV, MAXUMU,
+                                             MAXPHI, MAXMOM)
+
+    # RFLDN: Diffuse down flux, sfc:
+    assert np.isclose(RFLDN[0], 0.13770026)
+
+    # FLUP[1]: Diffuse upward flux, toa
+    assert np.isclose(FLUP[1], 0.18716988)
+
+    # UU[:,0]: down radiance(z. ang), sfc
+    assert np.allclose(UU[:,0], [[0.04133346],
+                                 [0.04573157],
+                                 [0.03715499],
+                                 [0.03710731],
+                                 [0.03710731],
+                                 [0.03710731]])
+
+    # UU[:,1]: up radiance(z. ang), toa
+    assert np.allclose(UU[:,1], [[0.        ],
+                                 [0.        ],
+                                 [0.        ],
+                                 [0.05799797],
+                                 [0.06197565],
+                                 [0.05564552]])
+
+    # RFLDN: Diffuse down flux, sfc compared to result with 2nd DTAUC=3e-4
+    assert np.isclose(RFLDN[0]-.13767686, 0, atol=1e-4)
+
+    # FLUP: Diffuse upward flux, toa compared to result with 2nd DTAUC=3e-4
+    assert np.isclose(FLUP[1]- 0.18715, 0, atol=1e-4)
+
+    # UU[:,0]: down rad(z. ang), sfc compared to result with 2nd DTAUC=3e-4
+    assert np.allclose(UU[0,0] - 0.04131474, 0, atol=2e-5)
+    assert np.allclose(UU[1,0] - 0.04573740, 0, atol=1e-5)
+    assert np.allclose(UU[2,0] - 0.03715499, 0, atol=1e-6)
+    assert np.allclose(UU[3,0] - 0.03710805, 0, atol=1e-6)
+    assert np.allclose(UU[4,0] - 0.03710718, 0, atol=1e-6)
+    assert np.allclose(UU[5,0] - 0.03710717, 0, atol=1e-6)
+
+    # UU[:,1]: up radiance(z. ang), toa compared to result with 2nd DTAUC=3e-4
+    assert np.allclose(UU[0,1], 0, atol=1e-5)
+    assert np.allclose(UU[1,1], 0, atol=1e-5)
+    assert np.allclose(UU[2,1], 0, atol=1e-6)
+    assert np.allclose(UU[3,1] - 0.05799777, 0, atol=1e-6)
+    assert np.allclose(UU[4,1] - 0.06197017, 0, atol=1e-5)
+    assert np.allclose(UU[5,1] - 0.05563463, 0, atol=1e-4)
 
 
-# UU: down radiance(z. ang), sfc
-#     3e-4
-# [[0.04131474]
-#  [0.0457374 ]
-#  [0.03715499]
-#  [0.03710805]
-#  [0.03710718]
-#  [0.03710717]]
+def test_3em4(get_disortinput):
+    """
+    Second DTAUC = 3E-4
+    This optical depth is very small compared to the other ods (1.8 and 0.5),
+    and so we assume it is not very different from zero.
+    Thus decreasing it further should make a negligible difference.
+    However, as the next tests show, instead the difference grows as
+    DTAUC shrinks, due to the single precision.
+    """
 
-# 3e-5
-# UU: down radiance(z. ang), sfc
-# [[0.04132137]
-#  [0.0457426 ]
-#  [0.037155  ]
-#  [0.03710745]
-#  [0.03710745]
-#  [0.03710745]]
+    DTAUC = [1.8E+00, 3.0E-4, 5.0E-01]
 
-# 3e-6
-# UU: down radiance(z. ang), sfc
-# [[0.04125511]
-#  [0.0458356 ]
-#  [0.03715499]
-#  [0.03710451]
-#  [0.03710365]
-#  [0.03710364]]
+    UTAU = [sum(DTAUC), 0.0000E+00]
+    MAXULV = len(UTAU)
+    MAXCLY = len(DTAUC)
 
-# 3e-7
-# UU: down radiance(z. ang), sfc
-# [[0.04221911]
-#  [0.04518124]
-#  [0.037155  ]
-#  [0.03706822]
-#  [0.03706822]
-#  [0.03706822]]
+    disortinput = get_disortinput
+    NCLDLYR = disortinput['PMOM_CLD'].shape[1]
+    MAXMOM = disortinput['PMOM_CLD'].shape[0]-1
+    MAXUMU = len(disortinput['UMU'])
+    MAXPHI = len(disortinput['PHI'])
 
-# 3e-8
-# UU: down radiance(z. ang), sfc
-# [[0.04126661]
-#  [0.04560908]
-#  [0.037155  ]
-#  [0.03787563]
-#  [0.03787563]
-#  [0.03787563]]
+    RFLDIR, \
+    RFLDN, \
+    FLUP, \
+    DFDT, \
+    UAVG, \
+    UU, \
+    ALBMED, \
+    TRNMED, \
+    ERRMSG, \
+    ERRFLAG = disort_driver_py.disort_driver(disortinput['NLYR'],
+                                             DTAUC,
+                                             disortinput['SSALB'],
+                                             disortinput['NMOM'],
+                                             NCLDLYR,
+                                             disortinput['CLDLYR'],
+                                             disortinput['PMOM_CLD'],
+                                             disortinput['TEMPER'],
+                                             disortinput['WVNMLO'],
+                                             disortinput['WVNMHI'],
+                                             disortinput['USRTAU'],
+                                             disortinput['NTAU'],
+                                             UTAU,
+                                             disortinput['NSTR'],
+                                             disortinput['USRANG'],
+                                             disortinput['NUMU'],
+                                             disortinput['UMU'],
+                                             disortinput['NPHI'],
+                                             disortinput['PHI'],
+                                             disortinput['IBCND'],
+                                             disortinput['FBEAM'],
+                                             disortinput['UMU0'],
+                                             disortinput['PHI0'],
+                                             disortinput['FISOT'],
+                                             disortinput['LAMBER'],
+                                             disortinput['ALBEDO'],
+                                             disortinput['BTEMP'],
+                                             disortinput['TTEMP'],
+                                             disortinput['TEMIS'],
+                                             disortinput['PLANK'],
+                                             disortinput['ONLYFL'],
+                                             disortinput['HEADER'],
+                                             MAXCLY, MAXULV, MAXUMU,
+                                             MAXPHI, MAXMOM)
 
-# 3e-9
-# UU: down radiance(z. ang), sfc
-# [[0.04143301]
-#  [0.04582589]
-#  [0.037155  ]
-#  [0.03458402]
-#  [0.03458402]
-#  [0.03458402]]
+    # RFLDN: Diffuse down flux, sfc:
+    assert np.isclose(RFLDN[0], 0.13767686)
 
-# 3e-11
-# UU: down radiance(z. ang), sfc
-# [[0.03379185]
-#  [0.04718457]
-#  [0.037155  ]
-#  [0.11340915]
-#  [0.11340915]
-#  [0.11340915]]
+    # FLUP: Diffuse upward flux, toa
+    assert np.isclose(FLUP[1], 0.18715039)
 
-if __name__ == "__main__":
-    test1()
+    # UU[:,0]: down radiance(z. ang), sfc
+    assert np.allclose(UU[:,0], [[0.04131474],
+                                 [0.0457374 ],
+                                 [0.03715499],
+                                 [0.03710805],
+                                 [0.03710718],
+                                 [0.03710717]])
+
+    # UU[:,1]: up radiance(z. ang), toa
+    assert np.allclose(UU[:,1], [[0.        ],
+                                 [0.        ],
+                                 [0.        ],
+                                 [0.05799777],
+                                 [0.06197017],
+                                 [0.05563463]])
+
+
+def test_3em5(get_disortinput):
+    """
+    Second DTAUC = 3E-5
+    When compared to the results with the second dTAUC = 3E-4,
+    here we see that all absolute differences for the DISORT output
+    are within 1E-4 W/m2 for fluxes, and 1E-5 W/(m2 str-1 cm-1) for radiances.
+    e.g. 0.1 mW/m2 for fluxes, and 0.01 mW/(m2 str-1 cm-1) for radiances.
+    Since 0.01 mW/(m2 str-1 cm-1) is below the typical error level, 
+    3E-5 seems like a reasonable value to use to zero-out optical depths
+    """
+
+    DTAUC = [1.8E+00,  3.0E-5,  5.0E-01]
+
+    UTAU = [sum(DTAUC),  0.0000E+00]
+    MAXULV = len(UTAU)
+    MAXCLY = len(DTAUC)
+
+    disortinput = get_disortinput
+    NCLDLYR = disortinput['PMOM_CLD'].shape[1]
+    MAXMOM = disortinput['PMOM_CLD'].shape[0]-1
+    MAXUMU = len(disortinput['UMU'])
+    MAXPHI = len(disortinput['PHI'])
+
+    RFLDIR, \
+    RFLDN, \
+    FLUP, \
+    DFDT, \
+    UAVG, \
+    UU, \
+    ALBMED, \
+    TRNMED, \
+    ERRMSG, \
+    ERRFLAG = disort_driver_py.disort_driver(disortinput['NLYR'],
+                                             DTAUC,
+                                             disortinput['SSALB'],
+                                             disortinput['NMOM'],
+                                             NCLDLYR,
+                                             disortinput['CLDLYR'],
+                                             disortinput['PMOM_CLD'],
+                                             disortinput['TEMPER'],
+                                             disortinput['WVNMLO'],
+                                             disortinput['WVNMHI'],
+                                             disortinput['USRTAU'],
+                                             disortinput['NTAU'],
+                                             UTAU,
+                                             disortinput['NSTR'],
+                                             disortinput['USRANG'],
+                                             disortinput['NUMU'],
+                                             disortinput['UMU'],
+                                             disortinput['NPHI'],
+                                             disortinput['PHI'],
+                                             disortinput['IBCND'],
+                                             disortinput['FBEAM'],
+                                             disortinput['UMU0'],
+                                             disortinput['PHI0'],
+                                             disortinput['FISOT'],
+                                             disortinput['LAMBER'],
+                                             disortinput['ALBEDO'],
+                                             disortinput['BTEMP'],
+                                             disortinput['TTEMP'],
+                                             disortinput['TEMIS'],
+                                             disortinput['PLANK'],
+                                             disortinput['ONLYFL'],
+                                             disortinput['HEADER'],
+                                             MAXCLY, MAXULV, MAXUMU,
+                                             MAXPHI, MAXMOM)
+
+    # RFLDN: Diffuse down flux, sfc:
+    assert np.isclose(RFLDN[0]-.13767686, 0, atol=1e-4)
+
+    # FLUP: Diffuse upward flux, toa
+    assert np.isclose(FLUP[1]- 0.18715039, 0, atol=1e-4)
+
+    # UU[:,0]: down radiance(z. ang), sfc
+    assert np.allclose(UU[0,0] - 0.04131474, 0, atol=1e-5)
+    assert np.allclose(UU[1,0] - 0.04573740, 0, atol=1e-5)
+    assert np.allclose(UU[2,0] - 0.03715499, 0, atol=1e-6)
+    assert np.allclose(UU[3,0] - 0.03710805, 0, atol=1e-6)
+    assert np.allclose(UU[4,0] - 0.03710718, 0, atol=1e-6)
+    assert np.allclose(UU[5,0] - 0.03710717, 0, atol=1e-6)
+
+    # UU[:,1]: up radiance(z. ang), toa
+    assert np.allclose(UU[0,1], 0, atol=1e-5)
+    assert np.allclose(UU[1,1], 0, atol=1e-5)
+    assert np.allclose(UU[2,1], 0, atol=1e-6)
+    assert np.allclose(UU[3,1] - 0.05799777, 0, atol=1e-6)
+    assert np.allclose(UU[4,1] - 0.06197017, 0, atol=1e-5)
+    assert np.allclose(UU[5,1] - 0.05563463, 0, atol=1e-4)
+
+
+
+def test_3em6(get_disortinput):
+    """
+    Second DTAUC = 3E-6
+    When compared to the results with the second dTAUC = 3E-5,
+    here we see that all absolute differences for the DISORT output
+    are within 1E-3 W/m2 for fluxes, and 1E-4 W/(m2 str-1 cm-1) for radiances.
+    e.g. 1 mW/m2 for fluxes, and 0.1 mW/(m2 str-1 cm-1) for radiances.
+    Given how small the optical depths are, these differences seem likely to
+    be due to increasing round-off error rather than the decreasing optical
+    depths. Thus we keep the optical depths above 1E-5
+    """
+
+    DTAUC = [1.8E+00,  3.0E-6,  5.0E-01]
+
+    UTAU = [sum(DTAUC),  0.0000E+00]
+    MAXULV = len(UTAU)
+    MAXCLY = len(DTAUC)
+
+    disortinput = get_disortinput
+    NCLDLYR = disortinput['PMOM_CLD'].shape[1]
+    MAXMOM = disortinput['PMOM_CLD'].shape[0]-1
+    MAXUMU = len(disortinput['UMU'])
+    MAXPHI = len(disortinput['PHI'])
+
+    RFLDIR, \
+    RFLDN, \
+    FLUP, \
+    DFDT, \
+    UAVG, \
+    UU, \
+    ALBMED, \
+    TRNMED, \
+    ERRMSG, \
+    ERRFLAG = disort_driver_py.disort_driver(disortinput['NLYR'],
+                                             DTAUC,
+                                             disortinput['SSALB'],
+                                             disortinput['NMOM'],
+                                             NCLDLYR,
+                                             disortinput['CLDLYR'],
+                                             disortinput['PMOM_CLD'],
+                                             disortinput['TEMPER'],
+                                             disortinput['WVNMLO'],
+                                             disortinput['WVNMHI'],
+                                             disortinput['USRTAU'],
+                                             disortinput['NTAU'],
+                                             UTAU,
+                                             disortinput['NSTR'],
+                                             disortinput['USRANG'],
+                                             disortinput['NUMU'],
+                                             disortinput['UMU'],
+                                             disortinput['NPHI'],
+                                             disortinput['PHI'],
+                                             disortinput['IBCND'],
+                                             disortinput['FBEAM'],
+                                             disortinput['UMU0'],
+                                             disortinput['PHI0'],
+                                             disortinput['FISOT'],
+                                             disortinput['LAMBER'],
+                                             disortinput['ALBEDO'],
+                                             disortinput['BTEMP'],
+                                             disortinput['TTEMP'],
+                                             disortinput['TEMIS'],
+                                             disortinput['PLANK'],
+                                             disortinput['ONLYFL'],
+                                             disortinput['HEADER'],
+                                             MAXCLY, MAXULV, MAXUMU,
+                                             MAXPHI, MAXMOM)
+
+    # RFLDN: Diffuse down flux, sfc:
+    assert np.isclose(RFLDN[0]-0.1377229, 0, atol=1e-3)
+
+    # FLUP: Diffuse upward flux, toa
+    assert np.isclose(FLUP[1]- 0.18712741, 0, atol=1e-3)
+
+    # UU[:,0]: down radiance(z. ang), sfc
+    assert np.allclose(UU[0,0] - 0.04132137, 0, atol=1e-4)
+    assert np.allclose(UU[1,0] - 0.0457426, 0, atol=1e-4)
+    assert np.allclose(UU[2,0] - 0.037155, 0, atol=1e-6)
+    assert np.allclose(UU[3,0] - 0.03710745, 0, atol=1e-5)
+    assert np.allclose(UU[4,0] - 0.03710745, 0, atol=1e-5)
+    assert np.allclose(UU[5,0] - 0.03710745, 0, atol=1e-5)
+
+    # UU[:,1]: up radiance(z. ang), toa
+    assert np.allclose(UU[0,1], 0, atol=1e-5)
+    assert np.allclose(UU[1,1], 0, atol=1e-5)
+    assert np.allclose(UU[2,1], 0, atol=1e-6)
+    assert np.allclose(UU[3,1] - 0.05799777, 0, atol=1e-5)
+    assert np.allclose(UU[4,1] - 0.06197017, 0, atol=1e-4)
+    assert np.allclose(UU[5,1] - 0.05563463, 0, atol=1e-4)
+
+
+def test_3em8(get_disortinput):
+    """
+    2nd DTAUC = 3E-8
+    This test demonstrates how errors explode for DTAUC << 1e-5
+    """
+
+    DTAUC = [1.8E+00,  3.0E-8,  5.0E-01]
+
+    UTAU = [sum(DTAUC),  0.0000E+00]
+    MAXULV = len(UTAU)
+    MAXCLY = len(DTAUC)
+
+    disortinput = get_disortinput
+    NCLDLYR = disortinput['PMOM_CLD'].shape[1]
+    MAXMOM = disortinput['PMOM_CLD'].shape[0]-1
+    MAXUMU = len(disortinput['UMU'])
+    MAXPHI = len(disortinput['PHI'])
+
+    RFLDIR, \
+    RFLDN, \
+    FLUP, \
+    DFDT, \
+    UAVG, \
+    UU, \
+    ALBMED, \
+    TRNMED, \
+    ERRMSG, \
+    ERRFLAG = disort_driver_py.disort_driver(disortinput['NLYR'],
+                                             DTAUC,
+                                             disortinput['SSALB'],
+                                             disortinput['NMOM'],
+                                             NCLDLYR,
+                                             disortinput['CLDLYR'],
+                                             disortinput['PMOM_CLD'],
+                                             disortinput['TEMPER'],
+                                             disortinput['WVNMLO'],
+                                             disortinput['WVNMHI'],
+                                             disortinput['USRTAU'],
+                                             disortinput['NTAU'],
+                                             UTAU,
+                                             disortinput['NSTR'],
+                                             disortinput['USRANG'],
+                                             disortinput['NUMU'],
+                                             disortinput['UMU'],
+                                             disortinput['NPHI'],
+                                             disortinput['PHI'],
+                                             disortinput['IBCND'],
+                                             disortinput['FBEAM'],
+                                             disortinput['UMU0'],
+                                             disortinput['PHI0'],
+                                             disortinput['FISOT'],
+                                             disortinput['LAMBER'],
+                                             disortinput['ALBEDO'],
+                                             disortinput['BTEMP'],
+                                             disortinput['TTEMP'],
+                                             disortinput['TEMIS'],
+                                             disortinput['PLANK'],
+                                             disortinput['ONLYFL'],
+                                             disortinput['HEADER'],
+                                             MAXCLY, MAXULV, MAXUMU,
+                                             MAXPHI, MAXMOM)
+
+
+    # THE ACTUAL VALUES - note that the down flux no longer makes sense
+    # RFLDN: Diffuse down flux, sfc:
+    assert np.isclose(RFLDN[0], .25838745)       # compare to 0.13767686
+
+    # FLUP: Diffuse upward flux, toa
+    assert np.isclose(FLUP[1], 0.14003532)       # compare to 0.18715039
+
+    # UU[:,0]: down radiance(z. ang), sfc        # compare to
+    assert np.allclose(UU[:,0], [[0.04126661],   # [0.04131474]
+                                 [0.04560908],   # [0.0457374 ]
+                                 [0.037155  ],   # [0.03715499]
+                                 [0.03787563],   # [0.03710805]
+                                 [0.03787563],   # [0.03710718]
+                                 [0.03787563]])  # [0.03710717]
+
+    # UU[:,1]: up radiance(z. ang), toa          # compare to
+    assert np.allclose(UU[:,1], [[0.        ],   # 0
+                                 [0.        ],   # 0
+                                 [0.        ],   # 0
+                                 [0.05766603],   # [0.05799777]
+                                 [0.05684418],   # [0.06197017]
+                                 [0.04508059]])  # [0.05563463]
+
+
+    # COMPARISON TO EXAMPLE WITH SECOND DTAUC = 3E-4
+    # RFLDN: Diffuse down flux, sfc:
+    assert np.isclose(RFLDN[0] -.13767686, 0, atol=0.2)
+
+    # FLUP: Diffuse upward flux, toa
+    assert np.isclose(FLUP[1] - 0.18715039, 0, atol=0.1)
+
+    # UU[:,0]: down radiance(z. ang), sfc
+    assert np.allclose(UU[0,0] - 0.04131474, 0, atol=1e-4)
+    assert np.allclose(UU[1,0] - 0.04573740, 0, atol=1e-3)
+    assert np.allclose(UU[2,0] - 0.03715499, 0, atol=1e-6)
+    assert np.allclose(UU[3,0] - 0.03710805, 0, atol=1e-3)
+    assert np.allclose(UU[4,0] - 0.03710718, 0, atol=1e-3)
+    assert np.allclose(UU[5,0] - 0.03710717, 0, atol=1e-3)
+
+    # UU[:,1]: up radiance(z. ang), toa
+    assert np.allclose(UU[0,1], 0, atol=1e-5)
+    assert np.allclose(UU[1,1], 0, atol=1e-5)
+    assert np.allclose(UU[2,1], 0, atol=1e-6)
+    assert np.allclose(UU[3,1] - 0.05799777, 0, atol=1e-3)
+    assert np.allclose(UU[4,1] - 0.06197017, 0, atol=1e-2)
+    assert np.allclose(UU[5,1] - 0.05563463, 0, atol=0.1)
