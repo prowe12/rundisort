@@ -8,13 +8,13 @@ A codebase for running DISORT from PYTHON to perform radiative transfer calculat
 
 1) Install gfortran via, e.g. brew install gcc.
 
-2) Install Python (version 3+) on your computer if you don't already have it (e.g. Anaconda install, from https://www.continuum.io/downloads).
+2) Install Python (version 3+) on your computer if you don't already have it/
 
 3) Clone the repository or copy the files in the source directory onto your computer.
 
 4) Within the installation directory, modify the makefile as needed for your gfortran compiler. Run "make" to compile disort_driver_py.so (a python library).
 
-5) If the output file is not named disort_driver_py.so, but rather something similar but with additional characters, rename to disort_driver_py.so.
+5) If the output file is not named disort_driver_py.so, but rather something similar but with additional characters, link to disort_driver_py.so: e.g. $ ln -s disort_driver_py.cpython-310-darwin.so disort_driver_py.so.
 
 6) Try out the code in Python by running “sample_run.py” from the tests/samplerun folder. If the code runs successfully, variables will be created and printed to the workspace. Compare the output to the results given in the file “disort_out_sample_run.txt.” 
 

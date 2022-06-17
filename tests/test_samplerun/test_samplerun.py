@@ -5,6 +5,8 @@ Created on Apr 2, 2021
 Last modified Apr 12, 2022s
 
 @author: prowe
+
+Copyright Penny M. Rowe and NorthWest Research Associates
 """
 
 
@@ -14,34 +16,8 @@ Last modified Apr 12, 2022s
 import numpy as np
 
 # DISORT modules
-import disort_driver_py
-import disort4_driver_py
-
-
-def print_results(RFLDN, FLUP, UU):
-    """
-    Print the results
-    @param RFLDN Diffuse down flux, sfc
-    @param FLUP Diffuse upward flux, to
-    @param UU Upwelling radiance(zenith ang), at toa
-    """
-
-    print("RFLDN: Diffuse down flux, sfc: ")
-    print(RFLDN[0])
-
-    print(" ")
-    print("FLUP: Diffuse upward flux, toa")
-    print(FLUP[1])
-
-    print(" ")
-    print("UU: down radiance(z. ang), sfc")
-    print(UU[:,0])
-
-
-    print(" ")
-    print("UU: up radiance(z. ang), toa")
-    print(UU[:,1])
-
+from rundisort import disort_driver_py
+#import disort4_driver_py
 
 
 def test1():
@@ -51,38 +27,38 @@ def test1():
     NSTR = 16
     NLYR = 3
     NTAU = 2
-    UTAU =  [2.59751963615417E+00,  0.00000000000000E+00]
+    UTAU = [2.59751963615417E+00, 0.00000000000000E+00]
     NPHI = 1
-    PHI =  [0.00000000000000E+00]
+    PHI = [0.00000000000000E+00]
     IBCND = 0
-    UMU0 =  0.00000000000000E+00
-    PHI0 =  5.09752949553775E+01
-    ALBEDO =  2.00000000000000E-02
-    SSALB =  [3.97345705305091E-01,  0.00000000000000E+00,  0.00000000000000E+00]
-    FBEAM =  0.00000000000000E+00
-    FISOT =  0.00000000000000E+00
-    DTAUC =  [1.79751963461538E+00,  3.00000000000000E-01,  5.00000000000000E-01]
-    WVNMLO =  9.49500000000000E+02
-    WVNMHI =  9.50500000000000E+02
+    UMU0 = 0.00000000000000E+00
+    PHI0 = 5.09752949553775E+01
+    ALBEDO = 2.00000000000000E-02
+    SSALB = [3.97345705305091E-01, 0.00000000000000E+00, 0.00000000000000E+00]
+    FBEAM = 0.00000000000000E+00
+    FISOT =0.00000000000000E+00
+    DTAUC = [1.79751963461538E+00, 3.00000000000000E-01, 5.00000000000000E-01]
+    WVNMLO =9.49500000000000E+02
+    WVNMHI = 9.50500000000000E+02
     USRTAU = 1
     NUMU = 6
-    UMU = np.array([-1.00E+00, -5.0E-01, -1.0E-02, 1.0E-02,  5.0E-01,  1.0E+00])
+    UMU = np.array([-1.00E+00, -5.0E-01, -1.0E-02, 1.0E-02, 5.0E-01, 1.0E+00])
     USRANG = 1
     LAMBER = 1
-    TEMIS =  0.00000000000000E+00
+    TEMIS = 0.00000000000000E+00
     PLANK = 1
     ONLYFL = 0
-    TEMPER =  [2.730E+02,  2.6300E+02,  2.530000E+02, 2.4300E+02]
-    TTEMP =  2.73000000000000E+02
-    BTEMP =  2.43000000000000E+02
+    TEMPER = [2.730E+02, 2.6300E+02, 2.530000E+02, 2.4300E+02]
+    TTEMP = 2.73000000000000E+02
+    BTEMP = 2.43000000000000E+02
     NMOM = 154
     NCLDLYR = 1
     HEADER = ' '
-    
+
     #&PMOMINPUT
-    CLDLYR = 1;
+    CLDLYR = 1
     NCLDLYR = 1
-    PMOM_CLD =  np.array([[\
+    PMOM_CLD = np.array([[\
       1.00000000000000E+00,  9.48125750204321E-01,  8.77985610583193E-01,
       7.98549223777405E-01,  7.18558236968330E-01,  6.42693810867911E-01,
       5.73678519005854E-01,  5.13010454531465E-01,  4.61163809320369E-01,
@@ -135,8 +111,6 @@ def test1():
       2.71188751747762E-05,  2.35647473451367E-05,  2.00532694158332E-05,
       1.65953612160422E-05,  1.32037184522940E-05,  9.89202934043430E-06,
       6.67410987669309E-06,  3.56329868017677E-06]]).T
-    #/
-    
     
     NCLDLYR = PMOM_CLD.shape[1]
     MAXMOM = PMOM_CLD.shape[0]-1
@@ -144,7 +118,6 @@ def test1():
     MAXCLY = len(DTAUC)
     MAXUMU = len(UMU)
     MAXPHI = len(PHI)
-    
     
     RFLDIR, \
     RFLDN, \
@@ -163,104 +136,60 @@ def test1():
                                              ALBEDO, BTEMP, TTEMP, TEMIS, PLANK,
                                              ONLYFL, HEADER, MAXCLY, MAXULV,
                                              MAXUMU, MAXPHI, MAXMOM)
-    print_results(RFLDN, FLUP, UU)
-    
-    
-    RFLDIR, \
-    RFLDN, \
-    FLUP, \
-    DFDT, \
-    UAVG, \
-    UU, \
-    ALBMED, \
-    TRNMED, \
-    ERRMSG, \
-    ERRFLAG = disort4_driver_py.disort_driver(NLYR, NMOM, NSTR,
-                                    NUMU, NPHI, NTAU,
-                                    USRANG, USRTAU, IBCND, ONLYFL,
-                                    PLANK, LAMBER, DTAUC, SSALB,
-                                    NCLDLYR, CLDLYR, PMOM_CLD, TEMPER,
-                                    WVNMLO, WVNMHI,
-                                    UTAU, UMU0, PHI0, UMU, PHI, FBEAM,
-                                    FISOT, ALBEDO, BTEMP, TTEMP, TEMIS,
-                                    HEADER, MAXCLY, MAXULV,
-                                    MAXUMU, MAXPHI, MAXMOM )
-    print_results(RFLDN, FLUP, UU)
-    
-    
-    # Expected results:
     
     # RFLDN: Diffuse down flux, sfc:
-    # 0.13878909
+    print(RFLDN)
+    assert np.isclose(RFLDN[0], 0.13878909)
     
     # FLUP: Diffuse upward flux, toa
-    # 0.1894969
+    assert np.isclose(FLUP[1], 0.1894969)
     
-    # UU: down radiance(z. ang), sfc
-    # [[0.04285485]
-    #  [0.04521359]
-    #  [0.037155  ]
-    #  [0.03711424]
-    #  [0.03711424]
-    #  [0.03711424]]
+    # UU[:,0]: down radiance(z. ang), sfc
+    assert np.allclose(UU[:,0], [[0.04285485],
+                                 [0.04521359],
+                                 [0.037155  ],
+                                 [0.03711424],
+                                 [0.03711424],
+                                 [0.03711424]])
     
-    # UU: up radiance(z. ang), toa
-    # [[0.        ]
-    #  [0.        ]
-    #  [0.        ]
-    #  [0.05801807]
-    #  [0.0624982 ]
-    #  [0.0567358 ]]
+    # UU[:,1]: up radiance(z. ang), toa
+    assert np.allclose(UU[:,1], [[0.],
+                                 [0.],
+                                 [0.],
+                                 [0.05801807],
+                                 [0.0624982 ],
+                                 [0.0567358 ]])
 
 
+def test1():
+    """Test 1: All DTAUC > 3E-1"""
 
-# .. Test 2: Some DTAUC < 1E-5
-DTAUC =  [1.8E+00,  3.0E-8,  5.00000000000000E-01]
-UTAU =  [sum(DTAUC),  0.0000E+00]
+    # # .. Test 2: Some DTAUC < 1E-5
+    # DTAUC = [1.8E+00,  3.0E-8,  5.00000000000000E-01]
+    # UTAU = [sum(DTAUC),  0.0000E+00]
+    
+    # RFLDIR, \
+    # RFLDN, \
+    # FLUP, \
+    # DFDT, \
+    # UAVG, \
+    # UU, \
+    # ALBMED, \
+    # TRNMED, \
+    # ERRMSG, \
+    # ERRFLAG = disort_driver_py.disort_driver(NLYR, DTAUC, SSALB, NMOM, NCLDLYR,
+    #                                           CLDLYR, PMOM_CLD, TEMPER, WVNMLO,
+    #                                           WVNMHI, USRTAU, NTAU, UTAU, NSTR,
+    #                                           USRANG, NUMU, UMU, NPHI, PHI, IBCND,
+    #                                           FBEAM, UMU0, PHI0, FISOT, LAMBER,
+    #                                           ALBEDO, BTEMP, TTEMP, TEMIS, PLANK,
+    #                                           ONLYFL, HEADER, MAXCLY, MAXULV,
+    #                                           MAXUMU, MAXPHI, MAXMOM)
+    # print_results(RFLDN, FLUP, UU)
 
-RFLDIR, \
-RFLDN, \
-FLUP, \
-DFDT, \
-UAVG, \
-UU, \
-ALBMED, \
-TRNMED, \
-ERRMSG, \
-ERRFLAG = disort_driver_py.disort_driver(NLYR, DTAUC, SSALB, NMOM, NCLDLYR,
-                                          CLDLYR, PMOM_CLD, TEMPER, WVNMLO,
-                                          WVNMHI, USRTAU, NTAU, UTAU, NSTR,
-                                          USRANG, NUMU, UMU, NPHI, PHI, IBCND,
-                                          FBEAM, UMU0, PHI0, FISOT, LAMBER,
-                                          ALBEDO, BTEMP, TTEMP, TEMIS, PLANK,
-                                          ONLYFL, HEADER, MAXCLY, MAXULV,
-                                          MAXUMU, MAXPHI, MAXMOM)
-print_results(RFLDN, FLUP, UU)
+# del RFLDN, FLUP, UU
 
-del RFLDN, FLUP, UU
-
-UTAU =  [sum(DTAUC),  0.0000E+00]
-
-RFLDIR, \
-RFLDN, \
-FLUP, \
-DFDT, \
-UAVG, \
-UU, \
-ALBMED, \
-TRNMED, \
-ERRMSG, \
-ERRFLAG = disort4_driver_py.disort_driver(NLYR, NMOM, NSTR,
-                                NUMU, NPHI, NTAU,
-                                USRANG, USRTAU, IBCND, ONLYFL,
-                                PLANK, LAMBER, DTAUC, SSALB,
-                                NCLDLYR, CLDLYR, PMOM_CLD, TEMPER,
-                                WVNMLO, WVNMHI,
-                                UTAU, UMU0, PHI0, UMU, PHI, FBEAM,
-                                FISOT, ALBEDO, BTEMP, TTEMP, TEMIS,
-                                HEADER, MAXCLY, MAXULV,
-                                MAXUMU, MAXPHI, MAXMOM )
-print_results(RFLDN, FLUP, UU)
+# UTAU = [sum(DTAUC),  0.0000E+00]
 
 
 # UU: down radiance(z. ang), sfc
@@ -325,3 +254,6 @@ print_results(RFLDN, FLUP, UU)
 #  [0.11340915]
 #  [0.11340915]
 #  [0.11340915]]
+
+if __name__ == "__main__":
+    test1()
