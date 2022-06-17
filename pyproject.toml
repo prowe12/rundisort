@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "rundisort"
 version = "0.1.0"
-description = "Run DISORT from Python3.x with f2py"
-authors = ["Penny Rowe"]
-license = "GPL-3.0-or-later"
+description = "Rundisort is a codebase for allowing DISORT to be run from Python using f2py."
+authors = ["Penny Rowe <1795738+prowe12@users.noreply.github.com>"]
+license = "GPL-3.0-only"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
+numpy = "^1.22.4"
 
 [tool.poetry.dev-dependencies]
 

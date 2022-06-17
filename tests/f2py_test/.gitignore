@@ -1,0 +1,3 @@
+# ignore files created by test and during test
+test*.so
+make_log.txt

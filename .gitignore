@@ -1,11 +1,4 @@
 
-
-# Log file for make 
-make_log*
-
-# notes and planned improvements
-extras/
-
 # Compiled source #
 ###################
 *.com
@@ -34,6 +27,7 @@ extras/
 *.log
 *.sql
 *.sqlite
+make_log*
 
 # OS generated files #
 ######################
