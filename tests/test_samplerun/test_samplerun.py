@@ -18,7 +18,6 @@ import pytest
 
 # DISORT modules
 from rundisort import disort_driver_py
-#import disort4_driver_py
 
 # Setup and teardown: the fixtures
 @pytest.fixture

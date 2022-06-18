@@ -8,7 +8,7 @@ A codebase for running DISORT from PYTHON to perform radiative transfer calculat
 
 1) Install gfortran via, e.g. brew install gcc.
 
-2) Install Python (version 3+) on your computer if you don't already have it/
+2) Install Python (version 3+) on your computer if you don't already have it.
 
 3) Clone the repository or copy the files in the source directory onto your computer.
 
@@ -16,7 +16,11 @@ A codebase for running DISORT from PYTHON to perform radiative transfer calculat
 
 5) If the output file is not named disort_driver_py.so, but rather something similar but with additional characters, link to disort_driver_py.so: e.g. $ ln -s disort_driver_py.cpython-310-darwin.so disort_driver_py.so.
 
-6) Try out the code in Python by running “sample_run.py” from the tests/samplerun folder. If the code runs successfully, variables will be created and printed to the workspace. Compare the output to the results given in the file “disort_out_sample_run.txt.” 
+6) Test fortran by compiling tests/fortran_test/fortran_test.f and running the output executable. It should print "Fortran says hello" four times.
+
+7) To prepare for testing f2py, run make in tests/test_f2py/test_f2py.py. This should create a file times3*.so which is used to test f2py (along with running other tests) in the step below).
+
+8) Run the tests by running pytest from the main directory. 
 
 ## Authors
   - **Penny Rowe** https://github.com/prowe12
